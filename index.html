@@ -1,285 +1,290 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>fymsh — Links</title>
   <meta name="description" content="fymsh — links, socials, projects." />
   <meta name="theme-color" content="#071021" />
+  
   <style>
-    :root{
-      --bg:#071021;
-      --card:#0b1020;
-      --muted:#9aa3b2;
-      --accent-1:#7b61ff;
-      --accent-2:#00d4ff;
-      --glass: rgba(255,255,255,0.03);
-      --radius:18px;
-      --max-width:720px;
-      --rx: 0deg;
-      --ry: 0deg;
-      --dx: 0px;
-      --dy: 0px;
-      --tilt-strength: 14deg;
+    :root {
+      --bg: #071021;
+      --card: #0b1020;
+      --muted: #9aa3b2;
+      --accent-1: #7b61ff;
+      --accent-2: #00d4ff;
+      --glass: rgba(255, 255, 255, 0.03);
+      --radius: 18px;
+      --max-width: 720px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(123,97,255,0.06), transparent 8%),
-                  radial-gradient(900px 420px at 90% 90%, rgba(0,212,255,0.03), transparent 12%),
-                  linear-gradient(180deg,#05060a 0%, #071021 60%);
-      color:#e6eef8;
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+    }
+    
+    body {
+      margin: 0;
+      background: 
+        radial-gradient(1200px 600px at 10% 10%, rgba(123, 97, 255, 0.06), transparent 8%),
+        radial-gradient(900px 420px at 90% 90%, rgba(0, 212, 255, 0.03), transparent 12%),
+        linear-gradient(180deg, #05060a 0%, #071021 60%);
+      color: #e6eef8;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px;
-      perspective:1200px;
-      overflow:hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      perspective: 1200px;
+      overflow: auto;
     }
 
-    /* Motion toggle control */
-    .controls {
-      position:fixed;
-      top:18px;
-      right:18px;
-      z-index:1200;
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-    .motion-toggle {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.03);
-      padding:8px 12px;
-      border-radius:10px;
-      cursor:pointer;
-      font-size:13px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .motion-toggle[aria-pressed="true"] { color:#fff; border-color: rgba(123,97,255,0.18); box-shadow: 0 8px 30px rgba(123,97,255,0.06) }
-
-    .stage{
-      width:100%;
-      max-width:var(--max-width);
-      position:relative;
+    .stage {
+      width: 100%;
+      max-width: var(--max-width);
+      position: relative;
+      margin: 48px auto;
     }
 
-    .layer{
-      position:absolute;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-      transform-style:preserve-3d;
+    .layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      transform-style: preserve-3d;
     }
-    .layer .shape{
-      position:absolute;
-      border-radius:14px;
-      filter:blur(36px);
-      mix-blend-mode:screen;
-      opacity:0.9;
-      transform: translateZ(var(--z,0px));
+    
+    .layer .shape {
+      position: absolute;
+      border-radius: 14px;
+      filter: blur(36px);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      will-change: transform;
     }
-    .l1{ left:-6%; top:-8%; width:420px; height:240px; background:linear-gradient(90deg,var(--accent-1) 0%, rgba(123,97,255,0.06) 50%); --z:-120px; opacity:0.9 }
-    .l2{ right:-8%; bottom:-6%; width:360px; height:200px; background:linear-gradient(90deg, rgba(0,212,255,0.12), rgba(123,97,255,0.04)); --z:-240px; filter: blur(48px) }
-    .grid{
-      position:absolute;
-      inset:0;
+    
+    .l1 {
+      left: -6%;
+      top: -8%;
+      width: 420px;
+      height: 240px;
+      background: linear-gradient(90deg, var(--accent-1) 0%, rgba(123, 97, 255, 0.06) 50%);
+    }
+    
+    .l2 {
+      right: -8%;
+      bottom: -6%;
+      width: 360px;
+      height: 200px;
+      background: linear-gradient(90deg, rgba(0, 212, 255, 0.12), rgba(123, 97, 255, 0.04));
+      filter: blur(48px);
+    }
+    
+    .grid {
+      position: absolute;
+      inset: 0;
       background-image:
-        linear-gradient(transparent 48px, rgba(255,255,255,0.01) 49px),
-        linear-gradient(90deg, transparent 48px, rgba(255,255,255,0.01) 49px);
-      background-size:48px 48px;
-      mix-blend-mode:overlay;
-      opacity:0.035;
-      transform: translateZ(-300px) scale(1.3);
-      pointer-events:none;
+        linear-gradient(transparent 48px, rgba(255, 255, 255, 0.01) 49px),
+        linear-gradient(90deg, transparent 48px, rgba(255, 255, 255, 0.01) 49px);
+      background-size: 48px 48px;
+      mix-blend-mode: overlay;
+      opacity: 0.035;
+      filter: blur(2px);
     }
 
-    .card-wrap{
-      position:relative;
-      z-index:5;
-      transform-style:preserve-3d;
-      transition:transform 400ms cubic-bezier(.18,.9,.32,1);
-      will-change:transform;
-      pointer-events:auto;
+    .card-wrap {
+      position: relative;
+      z-index: 5;
+      transform-style: preserve-3d;
+      will-change: transform;
+      pointer-events: auto;
     }
-    .card{
-      position:relative;
-      margin:40px auto;
-      padding:34px;
-      border-radius:var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 20px 60px rgba(4,6,16,0.7), 0 2px 0 rgba(255,255,255,0.02) inset;
-      text-align:center;
-      transform-origin:center;
-      transform:
-        rotateX(var(--rx))
-        rotateY(var(--ry))
-        translate3d(var(--dx), var(--dy), 0);
-      will-change:transform;
-      overflow:visible;
-      user-select:none;
+    
+    .card {
+      position: relative;
+      margin: 40px auto;
+      padding: 34px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      box-shadow: 
+        0 20px 60px rgba(4, 6, 16, 0.7),
+        0 2px 0 rgba(255, 255, 255, 0.02) inset;
+      text-align: center;
+      transform-origin: center;
+      transform: none;
+      will-change: auto;
+      overflow: visible;
+      user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
 
-    .halo{
-      position:absolute;
-      left:50%;
-      top:-60px;
-      transform:translateX(-50%) translateZ(-40px);
-      width:260px;
-      height:260px;
-      border-radius:50%;
-      background: conic-gradient(from 120deg, rgba(123,97,255,0.12), rgba(0,212,255,0.06));
+    .halo {
+      position: absolute;
+      left: 50%;
+      top: -60px;
+      transform: translateX(-50%);
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: conic-gradient(from 120deg, rgba(123, 97, 255, 0.12), rgba(0, 212, 255, 0.06));
       filter: blur(28px);
-      pointer-events:none;
-      z-index:-1;
+      pointer-events: none;
+      z-index: -1;
     }
 
-    .avatar-wrap{
-      position:relative;
-      width:112px;
-      height:112px;
-      margin:-88px auto 12px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transform: translateZ(30px);
+    .avatar-wrap {
+      position: relative;
+      width: 112px;
+      height: 112px;
+      margin: -88px auto 12px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .avatar{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      border-radius:50%;
-      border:4px solid rgba(255,255,255,0.04);
-      box-shadow: 0 12px 40px rgba(123,97,255,0.14);
-    }
-
-    .title h1{
-      margin:8px 0 0;
-      font-size:22px;
-      letter-spacing:0.2px;
-      transform: translateZ(24px);
-    }
-    .tagline{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      transform: translateZ(18px);
-    }
-    .bio{
-      color:var(--muted);
-      font-size:14px;
-      margin:18px 0 20px;
-      max-width:56ch;
-      margin-left:auto;
-      margin-right:auto;
-      transform: translateZ(12px);
+    
+    .avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.04);
+      box-shadow: 0 12px 40px rgba(123, 97, 255, 0.14);
     }
 
-    .links{
-      display:grid;
-      gap:12px;
-      margin:0 auto 14px;
-      width:100%;
-      max-width:520px;
-      transform-style:preserve-3d;
-      perspective:800px;
+    .title h1 {
+      margin: 8px 0 0;
+      font-size: 22px;
+      letter-spacing: 0.2px;
     }
-    .link{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      padding:14px 16px;
-      border-radius:12px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));
-      border:1px solid rgba(255,255,255,0.03);
-      color:inherit;
-      transition:transform .18s cubic-bezier(.2,.9,.25,1), box-shadow .18s ease, border-color .18s;
-      box-shadow: 0 6px 22px rgba(4,6,16,0.5);
-      transform: translateZ(8px);
-      pointer-events:auto;
+    
+    .tagline {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .links {
+      display: grid;
+      gap: 12px;
+      margin: 20px auto 14px;
+      width: 100%;
+      max-width: 520px;
+      perspective: 800px;
+    }
+    
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      padding: 16px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.015));
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      color: inherit;
+      box-shadow: 0 6px 22px rgba(4, 6, 16, 0.5);
+      pointer-events: auto;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
-      cursor:pointer;
+      cursor: pointer;
+      transform: none;
+      transition: box-shadow 0.18s ease, border-color 0.18s;
+      min-height: 54px;
     }
-    .link:hover{
-      transform: translateZ(28px) translateY(-6px);
-      border-color: rgba(123,97,255,0.12);
-      box-shadow: 0 18px 60px rgba(123,97,255,0.06);
+    
+    .link:hover {
+      border-color: rgba(123, 97, 255, 0.12);
+      box-shadow: 0 12px 40px rgba(123, 97, 255, 0.04);
     }
-    .link .icon{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; flex:0 0 44px; color:var(--accent-2); background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); }
-    .link .label{ flex:1; text-align:left; font-weight:600; }
-    .link .meta { color:var(--muted); font-size:13px; margin-left:8px; }
+    
+    .link .icon {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      flex: 0 0 44px;
+      color: var(--accent-2);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+    }
+    
+    .link .label {
+      flex: 1;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .link .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-left: 8px;
+    }
 
-    .link { min-height:54px; padding:16px; }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      margin-top:8px;
-      transform: translateZ(10px);
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 8px;
     }
-    .btn{
-      background:transparent;
-      color:var(--muted);
-      padding:10px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.02);
-      text-decoration:none;
-      font-size:13px;
-      cursor:pointer;
+    
+    .btn {
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
       touch-action: manipulation;
       -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover{ color:#fff; border-color:rgba(255,255,255,0.04) }
-
-    .sublabel{ color:var(--muted); font-size:12px; margin-top:10px; transform: translateZ(8px); }
-
-    @media (max-width:520px){
-      .card{ padding:20px; border-radius:14px; }
-      .avatar-wrap{ width:84px; height:84px; margin:-62px auto 12px; }
-      .links{ gap:10px }
+    
+    .btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.04);
     }
 
-    /* reduce motion media defaults */
-    @media (hover: none), (pointer: coarse) {
-      :root { --tilt-strength: 6deg; }
-      .link:hover { transform: none; box-shadow: 0 6px 22px rgba(4,6,16,0.5); border-color: rgba(255,255,255,0.03); }
-      .link { transition: none; }
-      .card { transition: transform 300ms ease; }
+    .sublabel {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
     }
 
-    /* when reduced-motion is active we force stable layout */
-    html[data-motion="reduced"] {
-      --tilt-strength: 0deg;
+    @media (max-width: 520px) {
+      .card {
+        padding: 20px;
+        border-radius: 14px;
+      }
+      
+      .avatar-wrap {
+        width: 84px;
+        height: 84px;
+        margin: -62px auto 12px;
+      }
+      
+      .links {
+        gap: 10px;
+      }
     }
-    html[data-motion="reduced"] .card { transform: none !important; }
-    html[data-motion="reduced"] .link { transform: translateZ(0) !important; transition: none !important; }
-    html[data-motion="reduced"] .layer .shape { animation: none !important; transform: none !important; filter: blur(16px) !important; opacity:0.8 }
-    html[data-motion="reduced"] .halo { display:none; }
 
-    svg { display:block }
+    svg {
+      display: block;
+    }
   </style>
 </head>
-<body>
-  <div class="controls" id="controls">
-    <button class="motion-toggle" id="motionToggle" aria-pressed="false" title="Toggle motion">Motion: On</button>
-  </div>
 
+<body>
   <div class="stage" id="stage">
     <div class="layer" id="layer-back">
       <div class="shape l1" aria-hidden="true"></div>
@@ -287,8 +292,8 @@
       <div class="grid" aria-hidden="true"></div>
     </div>
 
-    <div class="card-wrap" id="cardWrap">
-      <div class="card" id="card" role="region" aria-label="Profile card">
+    <div class="card-wrap">
+      <div class="card" role="region" aria-label="Profile card">
         <div class="halo" aria-hidden="true"></div>
 
         <div class="avatar-wrap" aria-hidden="true">
@@ -297,15 +302,17 @@
 
         <div class="title">
           <h1>fymsh</h1>
-          <p class="tagline">Designer · Developer · Curious</p>
+          <p class="tagline">dev</p>
         </div>
-
-        <p class="bio">Welcome — curated links and socials. Use the Motion toggle to disable/enable the 3D parallax behavior.</p>
 
         <nav class="links" aria-label="Profile links">
           <a class="link" href="https://instagram.com/fymm555" target="_blank" rel="noopener noreferrer">
             <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" fill="none"/>
+                <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+              </svg>
             </span>
             <span class="label">Instagram</span>
             <span class="meta">@fymm555</span>
@@ -313,7 +320,9 @@
 
           <a class="link" href="https://www.tiktok.com/@yoko.channn" target="_blank" rel="noopener noreferrer">
             <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 3.999v7.2a3 3 0 11-1.5-2.6V7.2l-5 .9A4 4 0 107 19.1 4 4 0 0011 15V8.6l5-1.1z" fill="currentColor"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M16 3.999v7.2a3 3 0 11-1.5-2.6V7.2l-5 .9A4 4 0 107 19.1 4 4 0 0011 15V8.6l5-1.1z" fill="currentColor"/>
+              </svg>
             </span>
             <span class="label">TikTok</span>
             <span class="meta">@yoko.channn</span>
@@ -321,7 +330,9 @@
 
           <a class="link" href="https://www.roblox.com/users/yokochannnnn/profile" target="_blank" rel="noopener noreferrer">
             <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3l12-2-1.8 13.6L12 21 6 18 6 3z" fill="currentColor"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 3l12-2-1.8 13.6L12 21 6 18 6 3z" fill="currentColor"/>
+              </svg>
             </span>
             <span class="label">Roblox</span>
             <span class="meta">yokochannnnn</span>
@@ -329,7 +340,10 @@
 
           <a class="link" href="mailto:fahimbovak@gmail.com" id="emailLink">
             <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6.5v11a2 2 0 002 2h14a2 2 0 002-2v-11" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M21 6.5l-9 6-9-6" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 6.5v11a2 2 0 002 2h14a2 2 0 002-2v-11" stroke="currentColor" stroke-width="1.6" fill="none"/>
+                <path d="M21 6.5l-9 6-9-6" stroke="currentColor" stroke-width="1.6" fill="none"/>
+              </svg>
             </span>
             <span class="label">Email</span>
             <span class="meta">fahimbovak@gmail.com</span>
@@ -337,186 +351,106 @@
 
           <a class="link" href="#" id="discordLink" aria-label="Discord handle">
             <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 14.2c1.06 0 1.92-.95 1.92-2.12 0-1.17-.86-2.12-1.92-2.12-1.07 0-1.93.95-1.93 2.12 0 1.17.86 2.12 1.93 2.12zM16.5 14.2c1.06 0 1.92-.95 1.92-2.12 0-1.17-.86-2.12-1.92-2.12-1.07 0-1.93.95-1.93 2.12 0 1.17.86 2.12 1.93 2.12z" fill="currentColor"/><path d="M21 4s-1.6 1.2-3.4 2.2c-3.2 1.7-7 1.7-10.2 0C6.6 5.2 5 4 5 4S3 8 3 12v1c0 4 6 7 9 7s9-3 9-7v-1c0-4-2-8-2-8z" fill="currentColor" opacity="0.9"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7.5 14.2c1.06 0 1.92-.95 1.92-2.12 0-1.17-.86-2.12-1.92-2.12-1.07 0-1.93.95-1.93 2.12 0 1.17.86 2.12 1.93 2.12zM16.5 14.2c1.06 0 1.92-.95 1.92-2.12 0-1.17-.86-2.12-1.92-2.12-1.07 0-1.93.95-1.93 2.12 0 1.17.86 2.12 1.93 2.12z" fill="currentColor"/>
+                <path d="M21 4s-1.6 1.2-3.4 2.2c-3.2 1.7-7 1.7-10.2 0C6.6 5.2 5 4 5 4S3 8 3 12v1c0 4 6 7 9 7s9-3 9-7v-1c0-4-2-8-2-8z" fill="currentColor" opacity="0.9"/>
+              </svg>
             </span>
             <span class="label">Discord</span>
-            <span class="meta">fym2192 (click to copy)</span>
+            <span class="meta">fym2192</span>
           </a>
         </nav>
 
         <div class="actions" role="group" aria-label="Quick actions">
           <button class="btn" id="copyEmailBtn" aria-label="Copy email">Copy email</button>
-          <button class="btn" id="copyDiscordBtn" aria-label="Copy discord">Copy discord</button>
         </div>
 
-        <div class="sublabel">DIAM.</div>
+        <div class="sublabel"></div>
       </div>
     </div>
   </div>
 
   <script>
-    (function(){
+    (function() {
       const stage = document.getElementById('stage');
-      const card = document.getElementById('card');
-      const cardWrap = document.getElementById('cardWrap');
       const layerBack = document.getElementById('layer-back');
-      const motionToggle = document.getElementById('motionToggle');
+      const l1 = layerBack.querySelector('.l1');
+      const l2 = layerBack.querySelector('.l2');
+      const grid = layerBack.querySelector('.grid');
+      let pausedAtBottom = false;
 
-      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
-
-      // Read stored preference
-      let motionEnabled = localStorage.getItem('fymsh.motion') !== 'reduced';
-      applyMotionPreference(motionEnabled, false);
-
-      motionToggle.addEventListener('click', () => {
-        motionEnabled = !motionEnabled;
-        localStorage.setItem('fymsh.motion', motionEnabled ? 'full' : 'reduced');
-        applyMotionPreference(motionEnabled, true);
-      });
-
-      function applyMotionPreference(enabled, announce){
-        if (enabled) {
-          document.documentElement.removeAttribute('data-motion');
-          motionToggle.setAttribute('aria-pressed', 'false');
-          motionToggle.textContent = 'Motion: On';
-          // restore tilt strength
-          document.documentElement.style.setProperty('--tilt-strength', isTouch ? '6deg' : '14deg');
-        } else {
-          document.documentElement.setAttribute('data-motion', 'reduced');
-          motionToggle.setAttribute('aria-pressed', 'true');
-          motionToggle.textContent = 'Motion: Off';
-          // force no tilt
-          document.documentElement.style.setProperty('--tilt-strength', '0deg');
-          // reset transforms immediately so layout is stable
-          document.documentElement.style.setProperty('--rx', '0deg');
-          document.documentElement.style.setProperty('--ry', '0deg');
-          document.documentElement.style.setProperty('--dx', '0px');
-          document.documentElement.style.setProperty('--dy', '0px');
-          // ensure decorative shapes don't intercept
-          layerBack.querySelectorAll('.shape').forEach(s => s.style.transform = 'none');
-        }
+      function applyBackgroundTransform(x, y) {
+        const tx1 = x * 40;
+        const ty1 = y * 24;
+        const tx2 = x * -28;
+        const ty2 = y * -18;
+        const tg = x * -16;
+        
+        if (l1) l1.style.transform = `translate3d(${tx1}px, ${ty1}px, 0)`;
+        if (l2) l2.style.transform = `translate3d(${tx2}px, ${ty2}px, 0)`;
+        if (grid) grid.style.transform = `translate3d(${tg}px, ${ty1/2}px, 0)`;
       }
 
-      // interactive 3D parallax + device tilt + copy-to-clipboard
-      let target = { rx:0, ry:0, dx:'0px', dy:'0px' };
-      let rx = 0, ry = 0, dx = 0, dy = 0;
-      const ease = 0.12;
-
-      const depthFactor = [
-        { el: layerBack.querySelector('.l1'), z: -140, speed: 0.06 },
-        { el: layerBack.querySelector('.l2'), z: -240, speed: 0.04 },
-        { el: layerBack.querySelector('.grid'), z: -320, speed: 0.02 }
-      ];
-
-      function onMove(e){
-        if (!motionEnabled) return;
+      function onMove(e) {
+        if (pausedAtBottom) return;
+        
         const rect = stage.getBoundingClientRect();
-        const cx = rect.left + rect.width/2;
-        const cy = rect.top + rect.height/2;
-        const x = ( (e.clientX || (e.touches && e.touches[0].clientX)) - cx ) / rect.width;
-        const y = ( (e.clientY || (e.touches && e.touches[0].clientY)) - cy ) / rect.height;
-
-        target.ry = (x * 1) * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tilt-strength'));
-        target.rx = (-y * 1) * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tilt-strength'));
-        target.dx = (-x * 18) + 'px';
-        target.dy = (-y * 12) + 'px';
-
-        depthFactor.forEach(d => {
-          if (!d.el) return;
-          const tx = -x * (Math.abs(d.z)/6);
-          const ty = -y * (Math.abs(d.z)/10);
-          d.el.style.transform = `translate3d(${tx}px, ${ty}px, ${d.z}px)`;
-        });
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const clientX = e.clientX || (e.touches && e.touches[0] && e.touches[0].clientX) || cx;
+        const clientY = e.clientY || (e.touches && e.touches[0] && e.touches[0].clientY) || cy;
+        const x = (clientX - cx) / rect.width;
+        const y = (clientY - cy) / rect.height;
+        
+        applyBackgroundTransform(x, y);
       }
 
-      function onDevice(e){
-        if (!motionEnabled) return;
-        const gamma = e.gamma || 0;
-        const beta = e.beta || 0;
-        const nx = Math.max(-30, Math.min(30, gamma)) / 30;
-        const ny = Math.max(-30, Math.min(30, beta - 5)) / 30;
-        target.ry = nx * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tilt-strength'));
-        target.rx = -ny * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tilt-strength'));
-        target.dx = (-nx * 18) + 'px';
-        target.dy = (-ny * 12) + 'px';
-      }
-
-      function rafLoop(){
-        // smooth lerp towards target (or towards zero if motion off)
-        const tgtRx = motionEnabled ? target.rx : 0;
-        const tgtRy = motionEnabled ? target.ry : 0;
-        const tgtDx = motionEnabled ? parseFloat(String(target.dx)) : 0;
-        const tgtDy = motionEnabled ? parseFloat(String(target.dy)) : 0;
-
-        rx += (tgtRx - rx) * ease;
-        ry += (tgtRy - ry) * ease;
-        dx += (tgtDx - dx) * ease;
-        dy += (tgtDy - dy) * ease;
-
-        document.documentElement.style.setProperty('--rx', (rx).toFixed(2) + 'deg');
-        document.documentElement.style.setProperty('--ry', (ry).toFixed(2) + 'deg');
-        document.documentElement.style.setProperty('--dx', (dx).toFixed(2) + 'px');
-        document.documentElement.style.setProperty('--dy', (dy).toFixed(2) + 'px');
-
-        // micro parallax only when motion enabled
-        if (motionEnabled) {
-          const links = document.querySelectorAll('.link');
-          links.forEach((ln, i) => {
-            const depth = 8 + (i * 2);
-            const tx = (ry / 2) * (depth/12);
-            const ty = (rx / 2) * (depth/12);
-            ln.style.transform = `translateZ(${8 + i}px) translateX(${tx}px) translateY(${ty}px)`;
-          });
-        } else {
-          document.querySelectorAll('.link').forEach((ln) => {
-            ln.style.transform = `translateZ(0)`;
-          });
+      function onScroll() {
+        const scTop = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = max > 0 ? scTop / max : 0;
+        const tx1 = (progress - 0.5) * 120;
+        const ty = -progress * 80;
+        const tx2 = (progress - 0.5) * -90;
+        
+        if (l1) l1.style.transform = `translate3d(${tx1}px, ${ty}px, 0)`;
+        if (l2) l2.style.transform = `translate3d(${tx2}px, ${ty/1.2}px, 0)`;
+        if (grid) grid.style.transform = `translate3d(${tx1/2}px, ${ty/1.6}px, 0)`;
+        
+        const atBottom = (scTop + window.innerHeight) >= (document.documentElement.scrollHeight - 8);
+        
+        if (atBottom && !pausedAtBottom) {
+          pausedAtBottom = true;
+        } else if (!atBottom && pausedAtBottom) {
+          pausedAtBottom = false;
         }
-
-        requestAnimationFrame(rafLoop);
       }
-      rafLoop();
 
-      // attach listeners conditioned on motionEnabled
-      if (!isTouch) {
-        window.addEventListener('mousemove', onMove);
-      } else {
-        window.addEventListener('touchmove', onMove, {passive:true});
-      }
-      window.addEventListener('deviceorientation', onDevice, true);
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('touchmove', onMove, { passive: true });
+      window.addEventListener('scroll', onScroll, { passive: true });
 
-      // Copy handlers (always active)
       const copyEmailBtn = document.getElementById('copyEmailBtn');
-      const copyDiscordBtn = document.getElementById('copyDiscordBtn');
       const emailLink = document.getElementById('emailLink');
-      const discordLink = document.getElementById('discordLink');
 
-      async function copyText(text, btn){
-        try{
+      async function copyText(text, btn) {
+        try {
           await navigator.clipboard.writeText(text);
           const prev = btn.textContent;
           btn.textContent = 'Copied ✓';
-          setTimeout(()=> btn.textContent = prev, 1400);
-        } catch(e){
+          setTimeout(() => btn.textContent = prev, 1400);
+        } catch(e) {
           btn.textContent = 'Copy failed';
-          setTimeout(()=> btn.textContent = 'Copy', 1400);
+          setTimeout(() => btn.textContent = 'Copy email', 1400);
         }
       }
 
-      copyEmailBtn && copyEmailBtn.addEventListener('click', ()=> {
+      copyEmailBtn && copyEmailBtn.addEventListener('click', () => {
         const email = (emailLink && emailLink.getAttribute('href') || '').replace('mailto:', '') || 'fahimbovak@gmail.com';
         copyText(email, copyEmailBtn);
       });
 
-      discordLink && discordLink.addEventListener('click', (ev)=> {
-        ev.preventDefault();
-        copyText('fym2192', copyDiscordBtn || ev.currentTarget);
-      });
-
-      copyDiscordBtn && copyDiscordBtn.addEventListener('click', ()=> {
-        copyText('fym2192', copyDiscordBtn);
-      });
-
+      const discordLink = document.getElementById('discordLink');
       discordLink && discordLink.addEventListener('keypress', (ev) => {
         if (ev.key === ' ' || ev.key === 'Enter') {
           ev.preventDefault();
@@ -524,27 +458,10 @@
         }
       });
 
-      // entrance animation (skip if reduced)
-      window.addEventListener('load', ()=> {
-        if (!motionEnabled) {
-          card.style.opacity = 1;
-          layerBack.querySelectorAll('.shape').forEach(s => s.style.transform = 'none');
-          return;
-        }
-        card.style.transition = 'transform 700ms cubic-bezier(.2,.9,.32,1), opacity 550ms ease';
-        card.style.opacity = 0;
-        setTimeout(()=> card.style.opacity = 1, 60);
-        const shapes = layerBack.querySelectorAll('.shape');
-        shapes.forEach((s, idx) => {
-          s.animate([
-            { transform: s.style.transform + ' translateY(0px)' },
-            { transform: s.style.transform + ' translateY(-14px)' },
-            { transform: s.style.transform + ' translateY(0px)' }
-          ], { duration: 9000 + (idx*1600), iterations: Infinity, easing: 'ease-in-out' });
-        });
+      window.addEventListener('load', () => {
+        onScroll();
       });
     })();
   </script>
 </body>
 </html>
-
