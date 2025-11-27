@@ -261,6 +261,78 @@
       margin-top: 10px;
     }
 
+    /* --- Snow styles --- */
+    .snow-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 6; /* above the card */
+      overflow: visible;
+    }
+
+    .flake {
+      position: absolute;
+      top: -200px; /* start above the viewport */
+      will-change: transform, opacity;
+      pointer-events: none;
+      transform-origin: center;
+      backface-visibility: hidden;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
+    }
+
+    /* Each flake is a small cropping viewport so we can crop the GIF vertically a bit */
+    .flake .crop {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .flake img {
+      display: block;
+      width: 100%;
+      height: 120%; /* slightly taller so top/bottom crop occurs */
+      object-fit: cover;
+      object-position: center;
+      transform-origin: center;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translate3d(var(--start-x, 0px), -250px, 0) rotate(var(--start-rot, 0deg)) scale(var(--scale,1));
+        opacity: 0;
+      }
+      6% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(var(--end-x, 0px), calc(100vh + 200px), 0) rotate(var(--end-rot, 360deg)) scale(var(--scale,1));
+        opacity: 1;
+      }
+    }
+
+    @keyframes sway {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(var(--sway, 40px)); }
+      100% { transform: translateX(0); }
+    }
+
+    /* responsive adjustments for flake size on small screens */
+    @media (max-width: 520px) {
+      .flake { will-change: transform; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .flake, .flake img {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
     @media (max-width: 520px) {
       .card {
         padding: 20px;
@@ -338,17 +410,6 @@
             <span class="meta">yokochannnnn</span>
           </a>
 
-          <a class="link" href="mailto:fahimbovak@gmail.com" id="emailLink">
-            <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M3 6.5v11a2 2 0 002 2h14a2 2 0 002-2v-11" stroke="currentColor" stroke-width="1.6" fill="none"/>
-                <path d="M21 6.5l-9 6-9-6" stroke="currentColor" stroke-width="1.6" fill="none"/>
-              </svg>
-            </span>
-            <span class="label">Email</span>
-            <span class="meta">fahimbovak@gmail.com</span>
-          </a>
-
           <a class="link" href="#" id="discordLink" aria-label="Discord handle">
             <span class="icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -362,7 +423,7 @@
         </nav>
 
         <div class="actions" role="group" aria-label="Quick actions">
-          <button class="btn" id="copyEmailBtn" aria-label="Copy email">Copy email</button>
+          <!-- removed copy email button -->
         </div>
 
         <div class="sublabel"></div>
@@ -370,8 +431,12 @@
     </div>
   </div>
 
+  <!-- Snow container (injected elements will be children) -->
+  <div class="snow-container" id="snowContainer" aria-hidden="true"></div>
+
   <script>
     (function() {
+      /* Existing interactive motion + links code (unchanged) */
       const stage = document.getElementById('stage');
       const layerBack = document.getElementById('layer-back');
       const l1 = layerBack.querySelector('.l1');
@@ -430,26 +495,6 @@
       window.addEventListener('touchmove', onMove, { passive: true });
       window.addEventListener('scroll', onScroll, { passive: true });
 
-      const copyEmailBtn = document.getElementById('copyEmailBtn');
-      const emailLink = document.getElementById('emailLink');
-
-      async function copyText(text, btn) {
-        try {
-          await navigator.clipboard.writeText(text);
-          const prev = btn.textContent;
-          btn.textContent = 'Copied ✓';
-          setTimeout(() => btn.textContent = prev, 1400);
-        } catch(e) {
-          btn.textContent = 'Copy failed';
-          setTimeout(() => btn.textContent = 'Copy email', 1400);
-        }
-      }
-
-      copyEmailBtn && copyEmailBtn.addEventListener('click', () => {
-        const email = (emailLink && emailLink.getAttribute('href') || '').replace('mailto:', '') || 'fahimbovak@gmail.com';
-        copyText(email, copyEmailBtn);
-      });
-
       const discordLink = document.getElementById('discordLink');
       discordLink && discordLink.addEventListener('keypress', (ev) => {
         if (ev.key === ' ' || ev.key === 'Enter') {
@@ -461,9 +506,154 @@
       window.addEventListener('load', () => {
         onScroll();
       });
+
+      /* --- Snow script --- */
+      const GIF_URL = 'https://gifdb.com/images/high/dancing-cat-meme-happy-dance-746wv7e55mlux3oz.gif';
+      const container = document.getElementById('snowContainer');
+      const spawnIntervalMs = 220; // lower = denser snow; adjust if needed
+      const maxFlakes = 120; // cap concurrent flakes for performance
+
+      let flakesCount = 0;
+      let spawnTimer = null;
+
+      function rand(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function createFlake() {
+        if (flakesCount >= maxFlakes) return;
+        flakesCount++;
+
+        const flake = document.createElement('div');
+        flake.className = 'flake';
+
+        // Random horizontal start (in vw)
+        const startX = rand(0, 100); // percent of viewport width
+        // Random end X offset (small horizontal drift), negative or positive pixels
+        const endXOffset = rand(-120, 120);
+
+        // Random scale & size
+        const scale = rand(0.35, 0.95);
+        const baseSize = rand(42, 120); // pixel size for the flake viewport
+        const size = Math.round(baseSize * (window.devicePixelRatio || 1));
+
+        // Random rotation start/end
+        const startRot = rand(-25, 25);
+        const endRot = startRot + rand(90, 540);
+
+        // Random sway amplitude
+        const sway = rand(-36, 36);
+
+        // Animation duration varies for diversity
+        const duration = rand(6.5, 16); // seconds
+
+        // Create cropping viewport and image
+        const crop = document.createElement('div');
+        crop.className = 'crop';
+        crop.style.width = `${size}px`;
+        crop.style.height = `${Math.round(size * 1)}px`; // roughly square viewport for each flake
+
+        const img = document.createElement('img');
+        img.src = GIF_URL;
+        img.alt = '';
+        // little random horizontal offset so each flake shows different part of the GIF
+        const hPos = rand(30, 70);
+        img.style.objectPosition = `${hPos}% center`;
+
+        // Apply inline variables for the flake's animation
+        // Using CSS custom properties for start/end X to build relative transforms inside keyframes
+        const startLeftPx = (startX / 100) * window.innerWidth;
+        const endLeftPx = startLeftPx + endXOffset;
+        flake.style.setProperty('--start-x', `${startLeftPx}px`);
+        flake.style.setProperty('--end-x', `${endLeftPx}px`);
+        flake.style.setProperty('--start-rot', `${startRot}deg`);
+        flake.style.setProperty('--end-rot', `${endRot}deg`);
+        flake.style.setProperty('--sway', `${sway}px`);
+        flake.style.setProperty('--scale', `${scale}`);
+
+        // Position the flake at the correct starting x (we'll animate Y via keyframes)
+        flake.style.left = `${startX}vw`;
+        flake.style.width = `${size}px`;
+        flake.style.height = `${Math.round(size)}px`;
+
+        // Slight stagger by setting animationDelay randomly (helps natural effect)
+        const delay = rand(0, 1.2);
+
+        // Set fall animation
+        flake.style.animation = `fall ${duration}s linear ${delay}s forwards`;
+        // Apply a gentle sway using a separate animation on the element's child
+        crop.style.animation = `sway ${rand(duration * 0.6, duration * 0.95)}s ease-in-out ${delay}s infinite`;
+
+        crop.appendChild(img);
+        flake.appendChild(crop);
+        container.appendChild(flake);
+
+        // Add slight rotation animation on the flake itself (via transition when needed)
+        // Remove the flake after the fall animation ends
+        const onEnd = () => {
+          flake.removeEventListener('animationend', onEnd);
+          if (flake.parentNode) flake.parentNode.removeChild(flake);
+          flakesCount = Math.max(0, flakesCount - 1);
+        };
+
+        flake.addEventListener('animationend', onEnd);
+
+        // Safety: if the flake doesn't finish for some reason, remove after (duration + delay + 2s)
+        setTimeout(() => {
+          if (flake.parentNode) {
+            try { flake.parentNode.removeChild(flake); } catch(e){/*ignore*/ }
+            flakesCount = Math.max(0, flakesCount - 1);
+          }
+        }, (duration + delay + 2) * 1000);
+      }
+
+      function startSnow() {
+        if (spawnTimer) return;
+        spawnTimer = setInterval(createFlake, spawnIntervalMs);
+      }
+
+      function stopSnow() {
+        if (!spawnTimer) return;
+        clearInterval(spawnTimer);
+        spawnTimer = null;
+      }
+
+      // Start automatically, but respect reduced-motion preference
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced) startSnow();
+
+      // Optional: restart on resize to avoid flakes piling at wrong positions
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          // remove all current flakes and reset count
+          const existing = container.children;
+          for (let i = existing.length - 1; i >= 0; i--) {
+            try { existing[i].remove(); } catch(e){}
+          }
+          flakesCount = 0;
+        }, 200);
+      });
+
+      // Expose control via window for debugging if you want to toggle density:
+      window.__snow = {
+        start: startSnow,
+        stop: stopSnow,
+        create: createFlake,
+        setDensity(msInterval, cap) {
+          // change spawn interval and cap at runtime
+          if (typeof msInterval === 'number') {
+            clearInterval(spawnTimer);
+            spawnTimer = setInterval(createFlake, msInterval);
+          }
+          if (typeof cap === 'number') {
+            // not immediate effect on existing flakes, but will cap future spawns
+            window.__snow._cap = cap;
+          }
+        }
+      };
     })();
   </script>
 </body>
 </html>
-
-
