@@ -10,13 +10,11 @@
   <style>
     : root {
       --bg:  #071021;
-      --card: #0b1020;
       --muted: #9aa3b2;
       --accent-1: #7b61ff;
       --accent-2: #00d4ff;
-      --glass: rgba(255, 255, 255, 0.03);
-      --radius: 18px;
-      --max-width: 480px;
+      --radius: 16px;
+      --max-width: 420px;
     }
     
     * {
@@ -25,35 +23,25 @@
       padding: 0;
     }
     
-    html, body {
-      height: 100%;
-    }
-    
     body {
-      background:  
-        radial-gradient(800px 400px at 20% 20%, rgba(123, 97, 255, 0.04), transparent),
-        radial-gradient(600px 300px at 80% 80%, rgba(0, 212, 255, 0.02), transparent),
-        linear-gradient(180deg, #05060a 0%, #071021 100%);
+      background: linear-gradient(180deg, #05060a 0%, #071021 100%);
       color: #e6eef8;
-      font-family:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      overflow: auto;
     }
 
     .container {
       width: 100%;
       max-width: var(--max-width);
-      position: relative;
     }
 
     .card {
-      position: relative;
-      padding: 40px 32px 32px;
+      padding: 40px 28px 32px;
       border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.05);
@@ -61,28 +49,19 @@
       text-align: center;
     }
 
-    /* Avatar */
-    .avatar-container {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 20px;
-      position: relative;
-    }
-    
     .avatar {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
+      width: 90px;
+      height: 90px;
+      border-radius:  50%;
       object-fit: cover;
       border: 3px solid rgba(123, 97, 255, 0.3);
       box-shadow: 0 0 30px rgba(123, 97, 255, 0.2);
+      margin-bottom: 16px;
     }
 
-    /* Profile Info */
-    .name {
-      font-size: 24px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
+    . name {
+      font-size: 22px;
+      font-weight:  600;
       margin-bottom: 4px;
     }
     
@@ -90,29 +69,27 @@
       color: var(--accent-2);
       font-size: 14px;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     
     .meta {
       color: var(--muted);
       font-size: 13px;
-      opacity: 0.8;
     }
 
-    /* Social Links */
     .links {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top:  28px;
+      margin-top: 24px;
     }
     
     .link {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 14px 18px;
-      border-radius:  12px;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.04);
       color: inherit;
@@ -127,19 +104,18 @@
     }
     
     . link-icon {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
+      border-radius: 8px;
       background: rgba(255, 255, 255, 0.03);
       color: var(--accent-2);
-      flex-shrink: 0;
     }
     
     .link-icon svg {
-      width:  18px;
+      width: 18px;
       height: 18px;
     }
     
@@ -156,12 +132,11 @@
     .link-handle {
       color: var(--muted);
       font-size: 12px;
-      margin-top: 2px;
     }
     
-    . link-arrow {
+    .link-arrow {
       color: var(--muted);
-      opacity: 0.5;
+      opacity: 0.4;
       transition: all 0.2s;
     }
     
@@ -170,17 +145,16 @@
       transform: translateX(3px);
     }
 
-    /* Footer */
     .footer {
       text-align: center;
-      margin-top: 24px;
+      margin-top: 20px;
       color: var(--muted);
-      font-size: 12px;
-      opacity: 0.5;
+      font-size: 11px;
+      opacity: 0.4;
     }
 
-    /* Dancing Cat Snow */
-    .snow-container {
+    /* Dancing Cats */
+    . snow-container {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -190,15 +164,12 @@
 
     .flake {
       position: absolute;
-      top: -150px;
-      will-change: transform, opacity;
+      top: -120px;
       pointer-events: none;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-      opacity: 0.6;
+      opacity: 0.5;
     }
 
     .flake img {
-      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -206,70 +177,36 @@
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(-150px) rotate(var(--start-rot, 0deg)) scale(var(--scale, 1));
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.6;
-      }
-      100% {
-        transform: translateY(calc(100vh + 150px)) rotate(var(--end-rot, 180deg)) scale(var(--scale, 1));
-        opacity: 0.4;
-      }
+      0% { transform: translateY(-120px) rotate(var(--r1)); opacity: 0; }
+      10% { opacity: 0.5; }
+      100% { transform: translateY(calc(100vh + 120px)) rotate(var(--r2)); opacity: 0.3; }
     }
 
     @media (max-width: 480px) {
-      .card {
-        padding: 32px 20px 24px;
-      }
-      
-      .avatar-container {
-        width: 80px;
-        height: 80px;
-      }
-      
-      .name {
-        font-size: 20px;
-      }
-      
-      .link {
-        padding: 12px 14px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      . flake {
-        animation: none ! important;
-      }
+      .card { padding: 28px 20px 24px; }
+      .avatar { width: 70px; height: 70px; }
+      .name { font-size: 18px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Dancing Cat Snow (Reduced) -->
-  <div class="snow-container" id="snowContainer"></div>
+  <div class="snow-container" id="snow"></div>
 
   <div class="container">
     <div class="card">
-      <!-- Avatar -->
-      <div class="avatar-container">
-        <img class="avatar" src="https://github.com/fymsh.png" alt="fym" />
-      </div>
-
-      <!-- Profile Info -->
+      <img class="avatar" src="https://github.com/fymsh.png" alt="fym" />
       <h1 class="name">fym</h1>
       <p class="bio">vibecoder</p>
       <p class="meta">📍 Malaysia • 20 y/o</p>
 
-      <!-- Social Links -->
       <nav class="links">
-        <a class="link" href="https://instagram.com/fymm555" target="_blank" rel="noopener noreferrer">
+        <!-- Instagram -->
+        <a class="link" href="https://instagram.com/fymm555" target="_blank">
           <span class="link-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="2" width="20" height="20" rx="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="18" cy="6" r="1. 5" fill="currentColor" stroke="none" />
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
             </svg>
           </span>
           <div class="link-text">
@@ -279,7 +216,8 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <a class="link" href="https://www.tiktok.com/@yoko.channn" target="_blank" rel="noopener noreferrer">
+        <!-- TikTok -->
+        <a class="link" href="https://www.tiktok.com/@yoko.channn" target="_blank">
           <span class="link-icon">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3. 45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-. 05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-. 1z"/>
@@ -292,7 +230,8 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <a class="link" href="https://www.roblox.com/users/2948013034/profile" target="_blank" rel="noopener noreferrer">
+        <!-- Roblox -->
+        <a class="link" href="https://www.roblox.com/users/2948013034/profile" target="_blank">
           <span class="link-icon">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M5. 164 0L. 16 18.928 18.836 24l5.004-18.928L5.164 0zm7.906 14.934l-4.905-1.292 1.292-4.905 4.905 1.292-1.292 4.905z"/>
@@ -305,20 +244,22 @@
           <span class="link-arrow">→</span>
         </a>
 
-        <a class="link" href="#" id="discordLink" onclick="copyDiscord(event)">
+        <!-- Discord -->
+        <a class="link" href="#" onclick="copyDiscord(event)">
           <span class="link-icon">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515. 074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25. 077.077 0 00-. 079-. 037A19.736 19.736 0 003. 677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58. 099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-. 292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-. 838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+              <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515. 074.074 0 00-. 079.037c-.21.375-. 444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003. 677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-. 292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a. 077.077 0 01-. 006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-. 041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
             </svg>
           </span>
           <div class="link-text">
             <div class="link-name">Discord</div>
             <div class="link-handle">fym2192</div>
           </div>
-          <span class="link-arrow" id="discordArrow">→</span>
+          <span class="link-arrow" id="dcArrow">→</span>
         </a>
 
-        <a class="link" href="https://github.com/fymsh" target="_blank" rel="noopener noreferrer">
+        <!-- GitHub -->
+        <a class="link" href="https://github.com/fymsh" target="_blank">
           <span class="link-icon">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
@@ -337,79 +278,56 @@
   </div>
 
   <script>
-    // Copy Discord username
+    // Copy Discord
     function copyDiscord(e) {
       e.preventDefault();
-      const username = 'fym2192';
-      const arrow = document.getElementById('discordArrow');
-      
-      navigator.clipboard.writeText(username).then(() => {
-        arrow.textContent = '✓';
-        setTimeout(() => {
-          arrow.textContent = '→';
-        }, 2000);
-      }).catch(() => {
-        prompt('Copy Discord username:', username);
+      navigator.clipboard.writeText('fym2192').then(() => {
+        document.getElementById('dcArrow').textContent = '✓';
+        setTimeout(() => document.getElementById('dcArrow').textContent = '→', 2000);
       });
     }
 
-    // Reduced Dancing Cat Snow Effect
+    // Reduced Dancing Cats
     (function() {
-      const GIF_URL = 'https://gifdb.com/images/high/dancing-cat-meme-happy-dance-746wv7e55mlux3oz.gif';
-      const container = document.getElementById('snowContainer');
-      const spawnIntervalMs = 800; // Slower spawn (was 220)
-      const maxFlakes = 25; // Fewer cats (was 120)
+      const gif = 'https://gifdb.com/images/high/dancing-cat-meme-happy-dance-746wv7e55mlux3oz.gif';
+      const container = document.getElementById('snow');
+      let count = 0;
+      const max = 20;
 
-      let flakesCount = 0;
+      function rand(a, b) { return Math.random() * (b - a) + a; }
 
-      function rand(min, max) {
-        return Math.random() * (max - min) + min;
-      }
+      function spawn() {
+        if (count >= max) return;
+        count++;
 
-      function createFlake() {
-        if (flakesCount >= maxFlakes) return;
-        flakesCount++;
+        const el = document.createElement('div');
+        el.className = 'flake';
+        const size = rand(30, 50);
+        const dur = rand(14, 22);
+        const r1 = rand(-20, 20);
+        const r2 = r1 + rand(60, 120);
 
-        const flake = document.createElement('div');
-        flake.className = 'flake';
-
-        const startX = rand(0, 100);
-        const scale = rand(0.3, 0.6); // Smaller cats
-        const size = Math.round(rand(30, 60)); // Smaller size
-        const startRot = rand(-15, 15);
-        const endRot = startRot + rand(60, 180);
-        const duration = rand(12, 20); // Slower fall
-
-        flake.style.cssText = `
-          left: ${startX}vw;
+        el.style.cssText = `
+          left: ${rand(0, 100)}vw;
           width: ${size}px;
           height: ${size}px;
-          --start-rot: ${startRot}deg;
-          --end-rot: ${endRot}deg;
-          --scale: ${scale};
-          animation: fall ${duration}s linear forwards;
+          --r1: ${r1}deg;
+          --r2: ${r2}deg;
+          animation: fall ${dur}s linear forwards;
         `;
 
         const img = document.createElement('img');
-        img.src = GIF_URL;
-        img.alt = '';
-
-        flake.appendChild(img);
-        container.appendChild(flake);
+        img.src = gif;
+        el.appendChild(img);
+        container.appendChild(el);
 
         setTimeout(() => {
-          if (flake.parentNode) {
-            flake.remove();
-            flakesCount--;
-          }
-        }, duration * 1000);
+          el.remove();
+          count--;
+        }, dur * 1000);
       }
 
-      // Start spawning
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (! reduced) {
-        setInterval(createFlake, spawnIntervalMs);
-      }
+      setInterval(spawn, 900);
     })();
   </script>
 </body>
