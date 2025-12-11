@@ -1,659 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>fymsh — Links</title>
-  <meta name="description" content="fymsh — links, socials, projects." />
-  <meta name="theme-color" content="#071021" />
-  
-  <style>
-    :root {
-      --bg: #071021;
-      --card: #0b1020;
-      --muted: #9aa3b2;
-      --accent-1: #7b61ff;
-      --accent-2: #00d4ff;
-      --glass: rgba(255, 255, 255, 0.03);
-      --radius: 18px;
-      --max-width: 720px;
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    html, body {
-      height: 100%;
-    }
-    
-    body {
-      margin: 0;
-      background: 
-        radial-gradient(1200px 600px at 10% 10%, rgba(123, 97, 255, 0.06), transparent 8%),
-        radial-gradient(900px 420px at 90% 90%, rgba(0, 212, 255, 0.03), transparent 12%),
-        linear-gradient(180deg, #05060a 0%, #071021 60%);
-      color: #e6eef8;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 28px;
-      perspective: 1200px;
-      overflow: auto;
-    }
-
-    .stage {
-      width: 100%;
-      max-width: var(--max-width);
-      position: relative;
-      margin: 48px auto;
-    }
-
-    .layer {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      transform-style: preserve-3d;
-    }
-    
-    .layer .shape {
-      position: absolute;
-      border-radius: 14px;
-      filter: blur(36px);
-      mix-blend-mode: screen;
-      opacity: 0.9;
-      will-change: transform;
-    }
-    
-    .l1 {
-      left: -6%;
-      top: -8%;
-      width: 420px;
-      height: 240px;
-      background: linear-gradient(90deg, var(--accent-1) 0%, rgba(123, 97, 255, 0.06) 50%);
-    }
-    
-    .l2 {
-      right: -8%;
-      bottom: -6%;
-      width: 360px;
-      height: 200px;
-      background: linear-gradient(90deg, rgba(0, 212, 255, 0.12), rgba(123, 97, 255, 0.04));
-      filter: blur(48px);
-    }
-    
-    .grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(transparent 48px, rgba(255, 255, 255, 0.01) 49px),
-        linear-gradient(90deg, transparent 48px, rgba(255, 255, 255, 0.01) 49px);
-      background-size: 48px 48px;
-      mix-blend-mode: overlay;
-      opacity: 0.035;
-      filter: blur(2px);
-    }
-
-    .card-wrap {
-      position: relative;
-      z-index: 5;
-      transform-style: preserve-3d;
-      will-change: transform;
-      pointer-events: auto;
-    }
-    
-    .card {
-      position: relative;
-      margin: 40px auto;
-      padding: 34px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      box-shadow: 
-        0 20px 60px rgba(4, 6, 16, 0.7),
-        0 2px 0 rgba(255, 255, 255, 0.02) inset;
-      text-align: center;
-      transform-origin: center;
-      transform: none;
-      will-change: auto;
-      overflow: visible;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .halo {
-      position: absolute;
-      left: 50%;
-      top: -60px;
-      transform: translateX(-50%);
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
-      background: conic-gradient(from 120deg, rgba(123, 97, 255, 0.12), rgba(0, 212, 255, 0.06));
-      filter: blur(28px);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .avatar-wrap {
-      position: relative;
-      width: 112px;
-      height: 112px;
-      margin: -88px auto 12px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .avatar {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid rgba(255, 255, 255, 0.04);
-      box-shadow: 0 12px 40px rgba(123, 97, 255, 0.14);
-    }
-
-    .title h1 {
-      margin: 8px 0 0;
-      font-size: 22px;
-      letter-spacing: 0.2px;
-    }
-    
-    .tagline {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .links {
-      display: grid;
-      gap: 12px;
-      margin: 20px auto 14px;
-      width: 100%;
-      max-width: 520px;
-      perspective: 800px;
-    }
-    
-    .link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      padding: 16px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.015));
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      color: inherit;
-      box-shadow: 0 6px 22px rgba(4, 6, 16, 0.5);
-      pointer-events: auto;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-      cursor: pointer;
-      transform: none;
-      transition: box-shadow 0.18s ease, border-color 0.18s;
-      min-height: 54px;
-    }
-    
-    .link:hover {
-      border-color: rgba(123, 97, 255, 0.12);
-      box-shadow: 0 12px 40px rgba(123, 97, 255, 0.04);
-    }
-    
-    .link .icon {
-      width: 44px;
-      height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      flex: 0 0 44px;
-      color: var(--accent-2);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
-    }
-    
-    .link .label {
-      flex: 1;
-      text-align: left;
-      font-weight: 600;
-    }
-    
-    .link .meta {
-      color: var(--muted);
-      font-size: 13px;
-      margin-left: 8px;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 8px;
-    }
-    
-    .btn {
-      background: transparent;
-      color: var(--muted);
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.02);
-      text-decoration: none;
-      font-size: 13px;
-      cursor: pointer;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    .btn:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.04);
-    }
-
-    .sublabel {
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 10px;
-    }
-
-    /* --- Snow styles --- */
-    .snow-container {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 6; /* above the card */
-      overflow: visible;
-    }
-
-    .flake {
-      position: absolute;
-      top: -200px; /* start above the viewport */
-      will-change: transform, opacity;
-      pointer-events: none;
-      transform-origin: center;
-      backface-visibility: hidden;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35));
-    }
-
-    /* Each flake is a small cropping viewport so we can crop the GIF vertically a bit */
-    .flake .crop {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 8px;
-      display: block;
-    }
-
-    .flake img {
-      display: block;
-      width: 100%;
-      height: 120%; /* slightly taller so top/bottom crop occurs */
-      object-fit: cover;
-      object-position: center;
-      transform-origin: center;
-      pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translate3d(var(--start-x, 0px), -250px, 0) rotate(var(--start-rot, 0deg)) scale(var(--scale,1));
-        opacity: 0;
-      }
-      6% {
-        opacity: 1;
-      }
-      100% {
-        transform: translate3d(var(--end-x, 0px), calc(100vh + 200px), 0) rotate(var(--end-rot, 360deg)) scale(var(--scale,1));
-        opacity: 1;
-      }
-    }
-
-    @keyframes sway {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(var(--sway, 40px)); }
-      100% { transform: translateX(0); }
-    }
-
-    /* responsive adjustments for flake size on small screens */
-    @media (max-width: 520px) {
-      .flake { will-change: transform; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .flake, .flake img {
-        animation: none !important;
-        transition: none !important;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .card {
-        padding: 20px;
-        border-radius: 14px;
-      }
-      
-      .avatar-wrap {
-        width: 84px;
-        height: 84px;
-        margin: -62px auto 12px;
-      }
-      
-      .links {
-        gap: 10px;
-      }
-    }
-
-    svg {
-      display: block;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="stage" id="stage">
-    <div class="layer" id="layer-back">
-      <div class="shape l1" aria-hidden="true"></div>
-      <div class="shape l2" aria-hidden="true"></div>
-      <div class="grid" aria-hidden="true"></div>
-    </div>
-
-    <div class="card-wrap">
-      <div class="card" role="region" aria-label="Profile card">
-        <div class="halo" aria-hidden="true"></div>
-
-        <div class="avatar-wrap" aria-hidden="true">
-          <img class="avatar" alt="fymsh avatar" src="https://github.com/fymsh.png" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fym | Software Developer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <span class="logo-text">fym</span>
+          <span class="logo-glow"></span>
         </div>
-
-        <div class="title">
-          <h1>fymsh</h1>
-          <p class="tagline">smol</p>
+        <ul class="nav-menu">
+          <li>
+            <a href="#home"><span class="nav-number">01.</span> Home</a>
+          </li>
+          <li>
+            <a href="#about"><span class="nav-number">02.</span> About</a>
+          </li>
+          <li>
+            <a href="#skills"><span class="nav-number">03.</span> Skills</a>
+          </li>
+          <li>
+            <a href="#projects"><span class="nav-number">04.</span> Projects</a>
+          </li>
+          <li>
+            <a href="#contact"><span class="nav-number">05.</span> Contact</a>
+          </li>
+        </ul>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-moon"></i>
+          </button>
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-
-        <nav class="links" aria-label="Profile links">
-          <a class="link" href="https://instagram.com/fymm555" target="_blank" rel="noopener noreferrer">
-            <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" fill="none"/>
-                <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6" fill="none"/>
-                <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
-              </svg>
-            </span>
-            <span class="label">Instagram</span>
-            <span class="meta">@fymm555</span>
-          </a>
-
-          <a class="link" href="https://www.tiktok.com/@yoko.channn" target="_blank" rel="noopener noreferrer">
-            <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M16 3.999v7.2a3 3 0 11-1.5-2.6V7.2l-5 .9A4 4 0 107 19.1 4 4 0 0011 15V8.6l5-1.1z" fill="currentColor"/>
-              </svg>
-            </span>
-            <span class="label">TikTok</span>
-            <span class="meta">@yoko.channn</span>
-          </a>
-
-          <a class="link" href="https://www.roblox.com/users/2948013034/profile" target="_blank" rel="noopener noreferrer">
-            <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 3l12-2-1.8 13.6L12 21 6 18 6 3z" fill="currentColor"/>
-              </svg>
-            </span>
-            <span class="label">Roblox</span>
-            <span class="meta">yokochannnnn</span>
-          </a>
-
-          <a class="link" href="#" id="discordLink" aria-label="Discord handle">
-            <span class="icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M7.5 14.2c1.06 0 1.92-.95 1.92-2.12 0-1.17-.86-2.12-1.92-2.12-1.07 0-1.93.95-1.93 2.12 0 1.17.86 2.12 1.93 2.12zM16.5 14.2c1.06 0 1.92-.95 1.92-2.12 0-1.17-.86-2.12-1.92-2.12-1.07 0-1.93.95-1.93 2.12 0 1.17.86 2.12 1.93 2.12z" fill="currentColor"/>
-                <path d="M21 4s-1.6 1.2-3.4 2.2c-3.2 1.7-7 1.7-10.2 0C6.6 5.2 5 4 5 4S3 8 3 12v1c0 4 6 7 9 7s9-3 9-7v-1c0-4-2-8-2-8z" fill="currentColor" opacity="0.9"/>
-              </svg>
-            </span>
-            <span class="label">Discord</span>
-            <span class="meta">fym2192</span>
-          </a>
-        </nav>
-
-        <div class="actions" role="group" aria-label="Quick actions">
-          <!-- removed copy email button -->
-        </div>
-
-        <div class="sublabel"></div>
       </div>
-    </div>
-  </div>
+    </nav>
 
-  <!-- Snow container (injected elements will be children) -->
-  <div class="snow-container" id="snowContainer" aria-hidden="true"></div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-text">Software Developer</span>
+            <div class="badge-glow"></div>
+          </div>
+          <h1 class="hero-title">
+            Building <span class="gradient-text">Digital Experiences</span>
+            That Inspire
+          </h1>
+          <p class="hero-tagline">
+            I craft elegant solutions to complex problems, combining technical
+            expertise with creative vision to build software that makes a
+            difference.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <span>Explore My Work</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <span>Get In Touch</span>
+              <i class="fas fa-paper-plane"></i>
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-number" data-count="50">0</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" data-count="3">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number" data-count="100">0</div>
+              <div class="stat-label">% Satisfaction</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="floating-card card-1">
+            <i class="fas fa-code"></i>
+            <span>Clean Code</span>
+          </div>
+          <div class="floating-card card-2">
+            <i class="fas fa-bolt"></i>
+            <span>Fast & Efficient</span>
+          </div>
+          <div class="floating-card card-3">
+            <i class="fas fa-shield-alt"></i>
+            <span>Secure</span>
+          </div>
+          <div class="profile-container">
+            <div class="profile-image">
+              <!-- Replace with your photo -->
+              <img src="profile.jpg" alt="fym" />
+            </div>
+            <div class="profile-glow"></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+        <span>Scroll down</span>
+      </div>
+    </section>
 
-  <script>
-    (function() {
-      /* Existing interactive motion + links code (unchanged) */
-      const stage = document.getElementById('stage');
-      const layerBack = document.getElementById('layer-back');
-      const l1 = layerBack.querySelector('.l1');
-      const l2 = layerBack.querySelector('.l2');
-      const grid = layerBack.querySelector('.grid');
-      let pausedAtBottom = false;
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">About Me</span>
+          <h2 class="section-title">Behind The Code</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Hello, I'm <span class="highlight">fym</span></h3>
+            <p>
+              A passionate software developer from
+              <span class="location-highlight">Selangor, Malaysia</span>,
+              specializing in creating digital solutions that bridge the gap
+              between technology and people.
+            </p>
+            <p>
+              With a focus on clean architecture and user-centered design, I
+              transform complex challenges into intuitive, performant
+              applications that deliver real value.
+            </p>
+            <div class="about-details">
+              <div class="detail-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <strong>Location</strong>
+                  <span>Selangor, Malaysia</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <strong>Email</strong>
+                  <span>hello@fym.dev</span>
+                </div>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-briefcase"></i>
+                <div>
+                  <strong>Status</strong>
+                  <span>Available for Work</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-skills">
+            <div class="skill-progress">
+              <div class="skill-info">
+                <span>Frontend Development</span>
+                <span>95%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 95%"></div>
+              </div>
+            </div>
+            <div class="skill-progress">
+              <div class="skill-info">
+                <span>Backend Development</span>
+                <span>88%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 88%"></div>
+              </div>
+            </div>
+            <div class="skill-progress">
+              <div class="skill-info">
+                <span>Mobile Development</span>
+                <span>92%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 92%"></div>
+              </div>
+            </div>
+            <div class="skill-progress">
+              <div class="skill-info">
+                <span>UI/UX Design</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      function applyBackgroundTransform(x, y) {
-        const tx1 = x * 40;
-        const ty1 = y * 24;
-        const tx2 = x * -28;
-        const ty2 = y * -18;
-        const tg = x * -16;
-        
-        if (l1) l1.style.transform = `translate3d(${tx1}px, ${ty1}px, 0)`;
-        if (l2) l2.style.transform = `translate3d(${tx2}px, ${ty2}px, 0)`;
-        if (grid) grid.style.transform = `translate3d(${tg}px, ${ty1/2}px, 0)`;
-      }
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Technologies</span>
+          <h2 class="section-title">My Toolbox</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <div class="category-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <h3>Frontend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Vue.js</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">Flutter</span>
+              <span class="skill-tag">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <div class="category-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3>Backend</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Redis</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <div class="category-icon">
+              <i class="fas fa-cloud"></i>
+            </div>
+            <h3>Cloud & DevOps</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">AWS</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">CI/CD</span>
+              <span class="skill-tag">Nginx</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      function onMove(e) {
-        if (pausedAtBottom) return;
-        
-        const rect = stage.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const clientX = e.clientX || (e.touches && e.touches[0] && e.touches[0].clientX) || cx;
-        const clientY = e.clientY || (e.touches && e.touches[0] && e.touches[0].clientY) || cy;
-        const x = (clientX - cx) / rect.width;
-        const y = (clientY - cy) / rect.height;
-        
-        applyBackgroundTransform(x, y);
-      }
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Portfolio</span>
+          <h2 class="section-title">Featured Work</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="#" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="project-tags">
+                <span>React</span>
+                <span>Node.js</span>
+                <span>MongoDB</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>E-Commerce Platform</h3>
+              <p>
+                A full-featured online shopping platform with real-time
+                inventory management and payment integration.
+              </p>
+              <div class="project-tech">
+                <span>Next.js</span>
+                <span>Express</span>
+                <span>Stripe</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="#" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="project-tags">
+                <span>Flutter</span>
+                <span>Firebase</span>
+                <span>Dart</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>Task Management App</h3>
+              <p>
+                Cross-platform productivity app with real-time collaboration and
+                offline support.
+              </p>
+              <div class="project-tech">
+                <span>Flutter</span>
+                <span>Firebase</span>
+                <span>BLoC</span>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-image">
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a href="#" class="project-link">
+                    <i class="fas fa-external-link-alt"></i>
+                  </a>
+                  <a href="#" class="project-link">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="project-tags">
+                <span>Python</span>
+                <span>ML</span>
+                <span>FastAPI</span>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3>AI Analytics Dashboard</h3>
+              <p>
+                Real-time data visualization platform with predictive analytics
+                and automated reporting.
+              </p>
+              <div class="project-tech">
+                <span>Python</span>
+                <span>React</span>
+                <span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      function onScroll() {
-        const scTop = window.scrollY;
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = max > 0 ? scTop / max : 0;
-        const tx1 = (progress - 0.5) * 120;
-        const ty = -progress * 80;
-        const tx2 = (progress - 0.5) * -90;
-        
-        if (l1) l1.style.transform = `translate3d(${tx1}px, ${ty}px, 0)`;
-        if (l2) l2.style.transform = `translate3d(${tx2}px, ${ty/1.2}px, 0)`;
-        if (grid) grid.style.transform = `translate3d(${tx1/2}px, ${ty/1.6}px, 0)`;
-        
-        const atBottom = (scTop + window.innerHeight) >= (document.documentElement.scrollHeight - 8);
-        
-        if (atBottom && !pausedAtBottom) {
-          pausedAtBottom = true;
-        } else if (!atBottom && pausedAtBottom) {
-          pausedAtBottom = false;
-        }
-      }
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Get In Touch</span>
+          <h2 class="section-title">Let's Build Something Amazing</h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p>hello@fym. dev</p>
+              <a href="mailto:hello@fym.dev" class="contact-link"
+                >Send Message <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <h3>Phone</h3>
+              <p>+60 12-345 6789</p>
+              <a href="tel:+60123456789" class="contact-link"
+                >Call Now <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <h3>Location</h3>
+              <p>Selangor, Malaysia</p>
+              <a href="#" class="contact-link"
+                >View Map <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
 
-      window.addEventListener('mousemove', onMove);
-      window.addEventListener('touchmove', onMove, { passive: true });
-      window.addEventListener('scroll', onScroll, { passive: true });
+          <!-- Social Media Links - ADD THIS SECTION -->
+          <div class="social-connect">
+            <h3 class="social-title">Connect With Me</h3>
+            <div class="social-grid">
+              <a
+                href="https://instagram.com/fymm555"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card"
+              >
+                <i class="fab fa-instagram"></i>
+                <span class="social-name">Instagram</span>
+                <span class="social-handle">@fymm555</span>
+              </a>
+              <a
+                href="https://www.tiktok.com/@yoko.channn"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card"
+              >
+                <i class="fab fa-tiktok"></i>
+                <span class="social-name">TikTok</span>
+                <span class="social-handle">@yoko.channn</span>
+              </a>
+              <a
+                href="https://github.com/fymsh"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="social-card"
+              >
+                <i class="fab fa-github"></i>
+                <span class="social-name">GitHub</span>
+                <span class="social-handle">@fymsh</span>
+              </a>
+              <a href="#" class="social-card" onclick="copyDiscord(event)">
+                <i class="fab fa-discord"></i>
+                <span class="social-name">Discord</span>
+                <span class="social-handle">fym2192</span>
+              </a>
+            </div>
+          </div>
 
-      const discordLink = document.getElementById('discordLink');
-      discordLink && discordLink.addEventListener('keypress', (ev) => {
-        if (ev.key === ' ' || ev.key === 'Enter') {
-          ev.preventDefault();
-          discordLink.click();
-        }
-      });
+          <form class="contact-form">
+            <div class="form-group">
+              <input type="text" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Your Email" required />
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Subject" required />
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <span>Send Message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
 
-      window.addEventListener('load', () => {
-        onScroll();
-      });
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <span class="logo-text">fym</span>
+            <span class="logo-glow"></span>
+          </div>
+          <p class="footer-tagline">
+            Crafting digital experiences with precision and passion
+          </p>
+          <div class="social-links">
+            <a
+              href="https://github.com/fymsh"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://instagram.com/fymm555"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.tiktok.com/@yoko.channn"
+              class="social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="#" class="social-link" onclick="copyDiscord(event)">
+              <i class="fab fa-discord"></i>
+            </a>
+          </div>
+          <div class="footer-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <p class="copyright">© 2024 fym. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
-      /* --- Snow script --- */
-      const GIF_URL = 'https://gifdb.com/images/high/dancing-cat-meme-happy-dance-746wv7e55mlux3oz.gif';
-      const container = document.getElementById('snowContainer');
-      const spawnIntervalMs = 220; // lower = denser snow; adjust if needed
-      const maxFlakes = 120; // cap concurrent flakes for performance
-
-      let flakesCount = 0;
-      let spawnTimer = null;
-
-      function rand(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      function createFlake() {
-        if (flakesCount >= maxFlakes) return;
-        flakesCount++;
-
-        const flake = document.createElement('div');
-        flake.className = 'flake';
-
-        // Random horizontal start (in vw)
-        const startX = rand(0, 100); // percent of viewport width
-        // Random end X offset (small horizontal drift), negative or positive pixels
-        const endXOffset = rand(-120, 120);
-
-        // Random scale & size
-        const scale = rand(0.35, 0.95);
-        const baseSize = rand(42, 120); // pixel size for the flake viewport
-        const size = Math.round(baseSize * (window.devicePixelRatio || 1));
-
-        // Random rotation start/end
-        const startRot = rand(-25, 25);
-        const endRot = startRot + rand(90, 540);
-
-        // Random sway amplitude
-        const sway = rand(-36, 36);
-
-        // Animation duration varies for diversity
-        const duration = rand(6.5, 16); // seconds
-
-        // Create cropping viewport and image
-        const crop = document.createElement('div');
-        crop.className = 'crop';
-        crop.style.width = `${size}px`;
-        crop.style.height = `${Math.round(size * 1)}px`; // roughly square viewport for each flake
-
-        const img = document.createElement('img');
-        img.src = GIF_URL;
-        img.alt = '';
-        // little random horizontal offset so each flake shows different part of the GIF
-        const hPos = rand(30, 70);
-        img.style.objectPosition = `${hPos}% center`;
-
-        // Apply inline variables for the flake's animation
-        // Using CSS custom properties for start/end X to build relative transforms inside keyframes
-        const startLeftPx = (startX / 100) * window.innerWidth;
-        const endLeftPx = startLeftPx + endXOffset;
-        flake.style.setProperty('--start-x', `${startLeftPx}px`);
-        flake.style.setProperty('--end-x', `${endLeftPx}px`);
-        flake.style.setProperty('--start-rot', `${startRot}deg`);
-        flake.style.setProperty('--end-rot', `${endRot}deg`);
-        flake.style.setProperty('--sway', `${sway}px`);
-        flake.style.setProperty('--scale', `${scale}`);
-
-        // Position the flake at the correct starting x (we'll animate Y via keyframes)
-        flake.style.left = `${startX}vw`;
-        flake.style.width = `${size}px`;
-        flake.style.height = `${Math.round(size)}px`;
-
-        // Slight stagger by setting animationDelay randomly (helps natural effect)
-        const delay = rand(0, 1.2);
-
-        // Set fall animation
-        flake.style.animation = `fall ${duration}s linear ${delay}s forwards`;
-        // Apply a gentle sway using a separate animation on the element's child
-        crop.style.animation = `sway ${rand(duration * 0.6, duration * 0.95)}s ease-in-out ${delay}s infinite`;
-
-        crop.appendChild(img);
-        flake.appendChild(crop);
-        container.appendChild(flake);
-
-        // Add slight rotation animation on the flake itself (via transition when needed)
-        // Remove the flake after the fall animation ends
-        const onEnd = () => {
-          flake.removeEventListener('animationend', onEnd);
-          if (flake.parentNode) flake.parentNode.removeChild(flake);
-          flakesCount = Math.max(0, flakesCount - 1);
-        };
-
-        flake.addEventListener('animationend', onEnd);
-
-        // Safety: if the flake doesn't finish for some reason, remove after (duration + delay + 2s)
-        setTimeout(() => {
-          if (flake.parentNode) {
-            try { flake.parentNode.removeChild(flake); } catch(e){/*ignore*/ }
-            flakesCount = Math.max(0, flakesCount - 1);
-          }
-        }, (duration + delay + 2) * 1000);
-      }
-
-      function startSnow() {
-        if (spawnTimer) return;
-        spawnTimer = setInterval(createFlake, spawnIntervalMs);
-      }
-
-      function stopSnow() {
-        if (!spawnTimer) return;
-        clearInterval(spawnTimer);
-        spawnTimer = null;
-      }
-
-      // Start automatically, but respect reduced-motion preference
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!reduced) startSnow();
-
-      // Optional: restart on resize to avoid flakes piling at wrong positions
-      let resizeTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          // remove all current flakes and reset count
-          const existing = container.children;
-          for (let i = existing.length - 1; i >= 0; i--) {
-            try { existing[i].remove(); } catch(e){}
-          }
-          flakesCount = 0;
-        }, 200);
-      });
-
-      // Expose control via window for debugging if you want to toggle density:
-      window.__snow = {
-        start: startSnow,
-        stop: stopSnow,
-        create: createFlake,
-        setDensity(msInterval, cap) {
-          // change spawn interval and cap at runtime
-          if (typeof msInterval === 'number') {
-            clearInterval(spawnTimer);
-            spawnTimer = setInterval(createFlake, msInterval);
-          }
-          if (typeof cap === 'number') {
-            // not immediate effect on existing flakes, but will cap future spawns
-            window.__snow._cap = cap;
-          }
-        }
-      };
-    })();
-  </script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
