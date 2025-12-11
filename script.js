@@ -171,4 +171,15 @@ window.addEventListener('load', () => {
             card.style.animationDelay = `${index * 2}s`;
         });
     }, 500);
+
 });
+// Copy Discord username
+function copyDiscord(event) {
+    event.preventDefault();
+    navigator.clipboard.writeText('fym2192').then(() => {
+        document.getElementById('discordHandle').textContent = 'Copied!  ✓';
+        setTimeout(() => {
+            document.getElementById('discordHandle').textContent = 'fym2192';
+        }, 2000);
+    });
+}
