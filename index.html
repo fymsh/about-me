@@ -1,536 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>fym | Software Developer</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-      <div class="container">
-        <div class="logo">
-          <span class="logo-text">fym</span>
-          <span class="logo-glow"></span>
-        </div>
-        <ul class="nav-menu">
-          <li>
-            <a href="#home"><span class="nav-number">01.</span> Home</a>
-          </li>
-          <li>
-            <a href="#about"><span class="nav-number">02.</span> About</a>
-          </li>
-          <li>
-            <a href="#skills"><span class="nav-number">03.</span> Skills</a>
-          </li>
-          <li>
-            <a href="#projects"><span class="nav-number">04.</span> Projects</a>
-          </li>
-          <li>
-            <a href="#contact"><span class="nav-number">05.</span> Contact</a>
-          </li>
-        </ul>
-        <div class="nav-actions">
-          <button class="theme-toggle" id="themeToggle">
-            <i class="fas fa-moon"></i>
-          </button>
-          <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>fym — Links</title>
+  <meta name="description" content="fym — vibecoder from Malaysia" />
+  <meta name="theme-color" content="#071021" />
+  
+  <style>
+    : root {
+      --bg:  #071021;
+      --card: #0b1020;
+      --muted: #9aa3b2;
+      --accent-1: #7b61ff;
+      --accent-2: #00d4ff;
+      --glass: rgba(255, 255, 255, 0.03);
+      --radius: 18px;
+      --max-width: 480px;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body {
+      height: 100%;
+    }
+    
+    body {
+      background:  
+        radial-gradient(800px 400px at 20% 20%, rgba(123, 97, 255, 0.04), transparent),
+        radial-gradient(600px 300px at 80% 80%, rgba(0, 212, 255, 0.02), transparent),
+        linear-gradient(180deg, #05060a 0%, #071021 100%);
+      color: #e6eef8;
+      font-family:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: auto;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      position: relative;
+    }
+
+    .card {
+      position: relative;
+      padding: 40px 32px 32px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      text-align: center;
+    }
+
+    /* Avatar */
+    .avatar-container {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+    
+    .avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(123, 97, 255, 0.3);
+      box-shadow: 0 0 30px rgba(123, 97, 255, 0.2);
+    }
+
+    /* Profile Info */
+    .name {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+    
+    .bio {
+      color: var(--accent-2);
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* Social Links */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top:  28px;
+    }
+    
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius:  12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .link:hover {
+      background: rgba(123, 97, 255, 0.08);
+      border-color: rgba(123, 97, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    . link-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--accent-2);
+      flex-shrink: 0;
+    }
+    
+    .link-icon svg {
+      width:  18px;
+      height: 18px;
+    }
+    
+    .link-text {
+      flex: 1;
+      text-align: left;
+    }
+    
+    .link-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+    
+    .link-handle {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    
+    . link-arrow {
+      color: var(--muted);
+      opacity: 0.5;
+      transition: all 0.2s;
+    }
+    
+    . link: hover .link-arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 12px;
+      opacity: 0.5;
+    }
+
+    /* Dancing Cat Snow */
+    .snow-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .flake {
+      position: absolute;
+      top: -150px;
+      will-change: transform, opacity;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      opacity: 0.6;
+    }
+
+    .flake img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-150px) rotate(var(--start-rot, 0deg)) scale(var(--scale, 1));
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(calc(100vh + 150px)) rotate(var(--end-rot, 180deg)) scale(var(--scale, 1));
+        opacity: 0.4;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 32px 20px 24px;
+      }
+      
+      .avatar-container {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .name {
+        font-size: 20px;
+      }
+      
+      .link {
+        padding: 12px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      . flake {
+        animation: none ! important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Dancing Cat Snow (Reduced) -->
+  <div class="snow-container" id="snowContainer"></div>
+
+  <div class="container">
+    <div class="card">
+      <!-- Avatar -->
+      <div class="avatar-container">
+        <img class="avatar" src="https://github.com/fymsh.png" alt="fym" />
       </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span class="badge-text">Software Developer</span>
-            <div class="badge-glow"></div>
-          </div>
-          <h1 class="hero-title">
-            Building <span class="gradient-text">Digital Experiences</span>
-            That Inspire
-          </h1>
-          <p class="hero-tagline">
-            I craft elegant solutions to complex problems, combining technical
-            expertise with creative vision to build software that makes a
-            difference.
-          </p>
-          <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">
-              <span>Explore My Work</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="#contact" class="btn btn-outline">
-              <span>Get In Touch</span>
-              <i class="fas fa-paper-plane"></i>
-            </a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat">
-              <div class="stat-number" data-count="50">0</div>
-              <div class="stat-label">Projects</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number" data-count="3">0</div>
-              <div class="stat-label">Years Experience</div>
-            </div>
-            <div class="stat">
-              <div class="stat-number" data-count="100">0</div>
-              <div class="stat-label">% Satisfaction</div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="floating-card card-1">
-            <i class="fas fa-code"></i>
-            <span>Clean Code</span>
-          </div>
-          <div class="floating-card card-2">
-            <i class="fas fa-bolt"></i>
-            <span>Fast & Efficient</span>
-          </div>
-          <div class="floating-card card-3">
-            <i class="fas fa-shield-alt"></i>
-            <span>Secure</span>
-          </div>
-          <div class="profile-container">
-            <div class="profile-image">
-              <!-- Replace with your photo -->
-              <img src="profile.jpg" alt="fym" />
-            </div>
-            <div class="profile-glow"></div>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-indicator">
-        <div class="mouse">
-          <div class="wheel"></div>
-        </div>
-        <span>Scroll down</span>
-      </div>
-    </section>
+      <!-- Profile Info -->
+      <h1 class="name">fym</h1>
+      <p class="bio">vibecoder</p>
+      <p class="meta">📍 Malaysia • 20 y/o</p>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">About Me</span>
-          <h2 class="section-title">Behind The Code</h2>
-          <div class="section-line"></div>
-        </div>
-        <div class="about-content">
-          <div class="about-text">
-            <h3>Hello, I'm <span class="highlight">fym</span></h3>
-            <p>
-              A passionate software developer from
-              <span class="location-highlight">Selangor, Malaysia</span>,
-              specializing in creating digital solutions that bridge the gap
-              between technology and people.
-            </p>
-            <p>
-              With a focus on clean architecture and user-centered design, I
-              transform complex challenges into intuitive, performant
-              applications that deliver real value.
-            </p>
-            <div class="about-details">
-              <div class="detail-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                  <strong>Location</strong>
-                  <span>Selangor, Malaysia</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <i class="fas fa-envelope"></i>
-                <div>
-                  <strong>Email</strong>
-                  <span>hello@fym.dev</span>
-                </div>
-              </div>
-              <div class="detail-item">
-                <i class="fas fa-briefcase"></i>
-                <div>
-                  <strong>Status</strong>
-                  <span>Available for Work</span>
-                </div>
-              </div>
-            </div>
+      <!-- Social Links -->
+      <nav class="links">
+        <a class="link" href="https://instagram.com/fymm555" target="_blank" rel="noopener noreferrer">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="18" cy="6" r="1. 5" fill="currentColor" stroke="none" />
+            </svg>
+          </span>
+          <div class="link-text">
+            <div class="link-name">Instagram</div>
+            <div class="link-handle">@fymm555</div>
           </div>
-          <div class="about-skills">
-            <div class="skill-progress">
-              <div class="skill-info">
-                <span>Frontend Development</span>
-                <span>95%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 95%"></div>
-              </div>
-            </div>
-            <div class="skill-progress">
-              <div class="skill-info">
-                <span>Backend Development</span>
-                <span>88%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 88%"></div>
-              </div>
-            </div>
-            <div class="skill-progress">
-              <div class="skill-info">
-                <span>Mobile Development</span>
-                <span>92%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 92%"></div>
-              </div>
-            </div>
-            <div class="skill-progress">
-              <div class="skill-info">
-                <span>UI/UX Design</span>
-                <span>85%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: 85%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <span class="link-arrow">→</span>
+        </a>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Technologies</span>
-          <h2 class="section-title">My Toolbox</h2>
-          <div class="section-line"></div>
-        </div>
-        <div class="skills-grid">
-          <div class="skill-category">
-            <div class="category-icon">
-              <i class="fas fa-desktop"></i>
-            </div>
-            <h3>Frontend</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">React</span>
-              <span class="skill-tag">Vue.js</span>
-              <span class="skill-tag">TypeScript</span>
-              <span class="skill-tag">Next.js</span>
-              <span class="skill-tag">Flutter</span>
-              <span class="skill-tag">Tailwind CSS</span>
-            </div>
+        <a class="link" href="https://www.tiktok.com/@yoko.channn" target="_blank" rel="noopener noreferrer">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3. 45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-. 05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-. 1z"/>
+            </svg>
+          </span>
+          <div class="link-text">
+            <div class="link-name">TikTok</div>
+            <div class="link-handle">@yoko.channn</div>
           </div>
-          <div class="skill-category">
-            <div class="category-icon">
-              <i class="fas fa-server"></i>
-            </div>
-            <h3>Backend</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">Node.js</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">Java</span>
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">MongoDB</span>
-              <span class="skill-tag">Redis</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <div class="category-icon">
-              <i class="fas fa-cloud"></i>
-            </div>
-            <h3>Cloud & DevOps</h3>
-            <div class="skill-tags">
-              <span class="skill-tag">AWS</span>
-              <span class="skill-tag">Docker</span>
-              <span class="skill-tag">Kubernetes</span>
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">CI/CD</span>
-              <span class="skill-tag">Nginx</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <span class="link-arrow">→</span>
+        </a>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Portfolio</span>
-          <h2 class="section-title">Featured Work</h2>
-          <div class="section-line"></div>
-        </div>
-        <div class="projects-grid">
-          <div class="project-card">
-            <div class="project-image">
-              <div class="project-overlay">
-                <div class="project-links">
-                  <a href="#" class="project-link">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="project-link">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="project-tags">
-                <span>React</span>
-                <span>Node.js</span>
-                <span>MongoDB</span>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>E-Commerce Platform</h3>
-              <p>
-                A full-featured online shopping platform with real-time
-                inventory management and payment integration.
-              </p>
-              <div class="project-tech">
-                <span>Next.js</span>
-                <span>Express</span>
-                <span>Stripe</span>
-              </div>
-            </div>
+        <a class="link" href="https://www.roblox.com/users/2948013034/profile" target="_blank" rel="noopener noreferrer">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M5. 164 0L. 16 18.928 18.836 24l5.004-18.928L5.164 0zm7.906 14.934l-4.905-1.292 1.292-4.905 4.905 1.292-1.292 4.905z"/>
+            </svg>
+          </span>
+          <div class="link-text">
+            <div class="link-name">Roblox</div>
+            <div class="link-handle">yokochannnnn</div>
           </div>
-          <div class="project-card">
-            <div class="project-image">
-              <div class="project-overlay">
-                <div class="project-links">
-                  <a href="#" class="project-link">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="project-link">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="project-tags">
-                <span>Flutter</span>
-                <span>Firebase</span>
-                <span>Dart</span>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>Task Management App</h3>
-              <p>
-                Cross-platform productivity app with real-time collaboration and
-                offline support.
-              </p>
-              <div class="project-tech">
-                <span>Flutter</span>
-                <span>Firebase</span>
-                <span>BLoC</span>
-              </div>
-            </div>
-          </div>
-          <div class="project-card">
-            <div class="project-image">
-              <div class="project-overlay">
-                <div class="project-links">
-                  <a href="#" class="project-link">
-                    <i class="fas fa-external-link-alt"></i>
-                  </a>
-                  <a href="#" class="project-link">
-                    <i class="fab fa-github"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="project-tags">
-                <span>Python</span>
-                <span>ML</span>
-                <span>FastAPI</span>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>AI Analytics Dashboard</h3>
-              <p>
-                Real-time data visualization platform with predictive analytics
-                and automated reporting.
-              </p>
-              <div class="project-tech">
-                <span>Python</span>
-                <span>React</span>
-                <span>PostgreSQL</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <span class="link-arrow">→</span>
+        </a>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Get In Touch</span>
-          <h2 class="section-title">Let's Build Something Amazing</h2>
-          <div class="section-line"></div>
-        </div>
-        <div class="contact-content">
-          <div class="contact-info">
-            <div class="contact-card">
-              <div class="contact-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <h3>Email</h3>
-              <p>hello@fym. dev</p>
-              <a href="mailto:hello@fym.dev" class="contact-link"
-                >Send Message <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-            <div class="contact-card">
-              <div class="contact-icon">
-                <i class="fas fa-phone"></i>
-              </div>
-              <h3>Phone</h3>
-              <p>+60 12-345 6789</p>
-              <a href="tel:+60123456789" class="contact-link"
-                >Call Now <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
-            <div class="contact-card">
-              <div class="contact-icon">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <h3>Location</h3>
-              <p>Selangor, Malaysia</p>
-              <a href="#" class="contact-link"
-                >View Map <i class="fas fa-arrow-right"></i
-              ></a>
-            </div>
+        <a class="link" href="#" id="discordLink" onclick="copyDiscord(event)">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515. 074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25. 077.077 0 00-. 079-. 037A19.736 19.736 0 003. 677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58. 099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-. 292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-. 838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+          </span>
+          <div class="link-text">
+            <div class="link-name">Discord</div>
+            <div class="link-handle">fym2192</div>
           </div>
+          <span class="link-arrow" id="discordArrow">→</span>
+        </a>
 
-          <!-- Social Media Links - ADD THIS SECTION -->
-          <div class="social-connect">
-            <h3 class="social-title">Connect With Me</h3>
-            <div class="social-grid">
-              <a
-                href="https://instagram.com/fymm555"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-              >
-                <i class="fab fa-instagram"></i>
-                <span class="social-name">Instagram</span>
-                <span class="social-handle">@fymm555</span>
-              </a>
-              <a
-                href="https://www.tiktok.com/@yoko.channn"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-              >
-                <i class="fab fa-tiktok"></i>
-                <span class="social-name">TikTok</span>
-                <span class="social-handle">@yoko.channn</span>
-              </a>
-              <a
-                href="https://github.com/fymsh"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="social-card"
-              >
-                <i class="fab fa-github"></i>
-                <span class="social-name">GitHub</span>
-                <span class="social-handle">@fymsh</span>
-              </a>
-              <a href="#" class="social-card" onclick="copyDiscord(event)">
-                <i class="fab fa-discord"></i>
-                <span class="social-name">Discord</span>
-                <span class="social-handle">fym2192</span>
-              </a>
-            </div>
+        <a class="link" href="https://github.com/fymsh" target="_blank" rel="noopener noreferrer">
+          <span class="link-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </span>
+          <div class="link-text">
+            <div class="link-name">GitHub</div>
+            <div class="link-handle">@fymsh</div>
           </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </nav>
 
-          <form class="contact-form">
-            <div class="form-group">
-              <input type="text" placeholder="Your Name" required />
-            </div>
-            <div class="form-group">
-              <input type="email" placeholder="Your Email" required />
-            </div>
-            <div class="form-group">
-              <input type="text" placeholder="Subject" required />
-            </div>
-            <div class="form-group">
-              <textarea placeholder="Your Message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">
-              <span>Send Message</span>
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
+      <p class="footer">© 2024 fym</p>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-logo">
-            <span class="logo-text">fym</span>
-            <span class="logo-glow"></span>
-          </div>
-          <p class="footer-tagline">
-            Crafting digital experiences with precision and passion
-          </p>
-          <div class="social-links">
-            <a
-              href="https://github.com/fymsh"
-              class="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://instagram.com/fymm555"
-              class="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a
-              href="https://www.tiktok.com/@yoko.channn"
-              class="social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="#" class="social-link" onclick="copyDiscord(event)">
-              <i class="fab fa-discord"></i>
-            </a>
-          </div>
-          <div class="footer-nav">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <p class="copyright">© 2024 fym. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+  <script>
+    // Copy Discord username
+    function copyDiscord(e) {
+      e.preventDefault();
+      const username = 'fym2192';
+      const arrow = document.getElementById('discordArrow');
+      
+      navigator.clipboard.writeText(username).then(() => {
+        arrow.textContent = '✓';
+        setTimeout(() => {
+          arrow.textContent = '→';
+        }, 2000);
+      }).catch(() => {
+        prompt('Copy Discord username:', username);
+      });
+    }
 
-    <script src="script.js"></script>
-  </body>
+    // Reduced Dancing Cat Snow Effect
+    (function() {
+      const GIF_URL = 'https://gifdb.com/images/high/dancing-cat-meme-happy-dance-746wv7e55mlux3oz.gif';
+      const container = document.getElementById('snowContainer');
+      const spawnIntervalMs = 800; // Slower spawn (was 220)
+      const maxFlakes = 25; // Fewer cats (was 120)
+
+      let flakesCount = 0;
+
+      function rand(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function createFlake() {
+        if (flakesCount >= maxFlakes) return;
+        flakesCount++;
+
+        const flake = document.createElement('div');
+        flake.className = 'flake';
+
+        const startX = rand(0, 100);
+        const scale = rand(0.3, 0.6); // Smaller cats
+        const size = Math.round(rand(30, 60)); // Smaller size
+        const startRot = rand(-15, 15);
+        const endRot = startRot + rand(60, 180);
+        const duration = rand(12, 20); // Slower fall
+
+        flake.style.cssText = `
+          left: ${startX}vw;
+          width: ${size}px;
+          height: ${size}px;
+          --start-rot: ${startRot}deg;
+          --end-rot: ${endRot}deg;
+          --scale: ${scale};
+          animation: fall ${duration}s linear forwards;
+        `;
+
+        const img = document.createElement('img');
+        img.src = GIF_URL;
+        img.alt = '';
+
+        flake.appendChild(img);
+        container.appendChild(flake);
+
+        setTimeout(() => {
+          if (flake.parentNode) {
+            flake.remove();
+            flakesCount--;
+          }
+        }, duration * 1000);
+      }
+
+      // Start spawning
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (! reduced) {
+        setInterval(createFlake, spawnIntervalMs);
+      }
+    })();
+  </script>
+</body>
 </html>
